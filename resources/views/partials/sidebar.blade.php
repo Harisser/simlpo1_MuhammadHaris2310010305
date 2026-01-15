@@ -1,12 +1,65 @@
 <style>
-    .main-sidebar {
-    background-color: #1877F2 !important; /* custom deep blue */
-        }
+/* Sidebar base */
+.main-sidebar {
+    background-color: #1877F2 !important;
+}
 
-    .main-sidebar .nav-link {
-    color: #ffffff !important;   /* pure white */
-    }
+/* Nav link base */
+.main-sidebar .nav-link {
+    color: #ffffff !important;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Sliding background (START LEFT) */
+.main-sidebar .nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.18);
+    transition: all 0.35s ease;
+    z-index: -1;
+    border-radius: 20px;
+}
+
+/* Hover & active → slide RIGHT */
+.main-sidebar .nav-link:hover::before,
+.main-sidebar .nav-link.active::before {
+    left: 0;
+}
+
+.main-sidebar .nav-link.active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: #ffffff;
+}
+
+.main-sidebar .nav-link:hover .nav-icon {
+    transform: translateX(5px);
+    transition: transform 0.3s ease;
+}
+
+
+/* Disable default AdminLTE hover */
+.main-sidebar .nav-link:hover {
+    background-color: transparent !important;
+}
+
+/* Treeview indent fix */
+.nav-treeview .nav-link {
+    padding-left: 2.5rem;
+}
 </style>
+
+
 
 <aside class="main-sidebar sidebar-dark-info elevation-4">
     <!-- Brand Logo -->
